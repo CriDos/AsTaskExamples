@@ -66,6 +66,13 @@ namespace AsTaskExample
                 WriteLine("We are doing something...");
                 await 1000; // Each iteration waits asynchronously for 1000 ms
             }
+
+            WriteLine("Shutdown...");
+            for (var i = 5; i > 0; i--)
+            {
+                WriteLine($"Shutdown through {i}s");
+                await 1000;
+            }
         }
 
         public static void Shutdown()
