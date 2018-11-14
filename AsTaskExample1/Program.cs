@@ -2,19 +2,23 @@
 using System.Threading.Tasks;
 using HardDev.AsTask;
 using HardDev.AsTask.Awaiters;
+using HardDev.AsTask.Context;
 using HardDev.AsTask.TaskHelpers;
 using static System.Console;
 
 namespace AsTaskExample
 {
-    internal static class QAsTaskConsole
+    public static class QAsTaskConsole
     {
         private static bool _isShutdown;
 
-        public static async Task Main()
+        public static void Main() => QAsyncContext.Run(MainAsync);
+        public static void Shutdown() => _isShutdown = true;
+
+        private static async Task MainAsync()
         {
             WriteLine("Initialize AsTask and capture the context of the main thread.");
-            QAsTask.Initialize(false);
+            QAsTask.Initialize();
 
             WriteLine("Assign an exception handler.");
             QAsTask.SetExceptionHandler(task =>
@@ -23,9 +27,6 @@ namespace AsTaskExample
                     ? $"[ExceptionHandler] {task.Exception.GetBaseException().Message}"
                     : $"[ExceptionHandler] Unhandled exception in task {task}");
             });
-
-            WriteLine("Switch to main thread.");
-            await QAsTask.ToMainThread();
 
             WriteLine($"Print to the console information about the current thread: {QAsTask.WhereAmI()}");
 
@@ -73,11 +74,6 @@ namespace AsTaskExample
                 WriteLine($"Shutdown through {i}s");
                 await 1000;
             }
-        }
-
-        public static void Shutdown()
-        {
-            _isShutdown = true;
         }
 
         private static async Task<long> FindPrimeNumberAsync(int n)

@@ -35,9 +35,8 @@
     <BaseIntermediateOutputPath>..\bin\obj\$(AssemblyName)</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AsTask, Version=1.0.6.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\AsTask.1.0.6\lib\net472\AsTask.dll</HintPath>
-      <Private>True</Private>
+      <Reference Include="AsTask, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\AsTask.1.0.7\lib\net472\AsTask.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
