@@ -12,7 +12,7 @@ namespace AsTaskExample
     {
         private static bool _isShutdown;
 
-        public static void Main() => QAsyncContext.Run(MainAsync);
+        public static void Main() => QAsyncContext.Run(MainAsync, "MainContext");
         public static void Shutdown() => _isShutdown = true;
 
         private static async Task MainAsync()
